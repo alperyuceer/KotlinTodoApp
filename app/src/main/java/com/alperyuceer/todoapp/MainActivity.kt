@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var db: TaskDatabase
     private lateinit var taskDao: TaskDao
     private var compositeDisposable= CompositeDisposable()
+    private lateinit var adapter: TaskAdapter
+
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,15 +43,12 @@ class MainActivity : AppCompatActivity() {
                 .subscribe()
         )
 
+
     }
-    private fun handleResponse(taskList: MutableList<Task>){
+    fun handleResponse(taskList: MutableList<Task>){
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = TaskAdapter(taskList)
+        adapter = TaskAdapter(taskList)
         binding.recyclerView.adapter = adapter
-
-
-
-
     }
 
 
